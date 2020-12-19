@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./src/bonding-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -91,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./src/bonding-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,5 +126,11 @@
       }
     }
   },
-  "defaultProject": "event-frontend"
+  "defaultProject": "event-frontend",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  }
+
 }
