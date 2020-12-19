@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { EventListComponent } from './event-list/event-list.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent},
+  { path: '', component: EventListComponent},
   { path: 'event-list', component: EventListComponent},
 ];
 
