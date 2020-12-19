@@ -1,4 +1,39 @@
+:host {
+    height:100%;
+    width: 100%;
+}
 li {
     color:blue;
     font-size: x-large;
+}
+.container {
+   display: grid;
+   height: 98vh;
+   width: 98vw;
+   grid-template-columns: 10vw auto 10vw;
+   grid-template-rows: 10vh auto 10vh;
+   padding-left: 1vw;
+   padding-right: 1vw;
+   padding-top: 1vh;
+   padding-bottom: 1vh;
+}
+app-header {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.router {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+app-footer {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
 }
