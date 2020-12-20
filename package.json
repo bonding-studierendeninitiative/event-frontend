@@ -25,6 +25,8 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
+  "author": "Sarah Unterseher",
+  "license": "ISC",
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.2",
     "@angular/cli": "~11.0.2",
