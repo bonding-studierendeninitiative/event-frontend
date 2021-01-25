@@ -8,8 +8,6 @@ li {
 }
 .container {
    display: grid;
-   height: 98vh;
-   width: 98vw;
    grid-template-columns: 10vw auto 10vw;
    grid-template-rows: 10vh auto 10vh;
    padding-left: 1vw;
