@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EventListComponent implements OnInit {
   events: Event[];
-  displayedColumns: string[] = ['Datum', 'Uhrzeit', 'Standort', 'Veranstaltung', 'Typ'];
+  displayedColumns: string[] = ['DatumZeit', 'Veranstaltung', 'Standort'];
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute) {
