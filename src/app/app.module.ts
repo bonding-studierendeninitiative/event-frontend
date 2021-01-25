@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { EventServiceService } from './services/event-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { MatTableModule } from '@angular/material/table';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatTableModule,
+        MatSortModule
+    ],
   providers: [
     EventServiceService
   ],
