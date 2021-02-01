@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from '../entities/Event';
 import {EventServiceService} from '../services/event-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -10,16 +10,22 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EventListComponent implements OnInit {
   events: Event[];
-  displayedColumns: string[] = ['DatumZeit', 'Veranstaltung', 'Standort'];
+  displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
+  private HSGs = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
+    'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
 
   constructor(private eventService: EventServiceService,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
       this.eventService.getAllEvents().subscribe((data) => {
         this.events = data;
         if (this.activeRoute.snapshot.params.location) {
+          if (!(this.HSGs.includes(this.activeRoute.snapshot.params.location))) {
+            this.router.navigate(['']);
+          }
           this.events = this.events.filter(event => {
             if (event.HSG.toLocaleLowerCase() === this.activeRoute.snapshot.params.location.toString()
               || event.HSG === '- überregional -') {
@@ -33,7 +39,7 @@ export class EventListComponent implements OnInit {
           const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
           event.StartDatum = new Date(event.StartDatum).toLocaleDateString('de-DE', options);
           if (event.EndeDatum) {
-            event.StartDatum += ' - \n' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
+            event.StartDatum += ' - ' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
           }
           if (!event.StartUhrzeit) {
             event.StartUhrzeit = 'ganztägig';
@@ -41,9 +47,17 @@ export class EventListComponent implements OnInit {
             event.StartUhrzeit = event.StartUhrzeit.substring(0, 5);
           }
           if (event.EndeUhrzeit) {
-            event.StartUhrzeit += ' - \n' + event.EndeUhrzeit.substring(0, 5);
+            event.StartUhrzeit += ' - ' + event.EndeUhrzeit.substring(0, 5);
+          }
+          if (event.Typ) {
+            event.TypIcon = 'assets/event_icons/' + event.Typ.substring(0, event.Typ.length - 9) + '.png';
+            event.Typ = event.Typ.substring(0, event.Typ.length - 9);
           }
         });
       });
     }
+
+    routeDetails(event: Event): void {
+      this.router.navigate(['/eventDetails/', event.ID]);
+  }
 }

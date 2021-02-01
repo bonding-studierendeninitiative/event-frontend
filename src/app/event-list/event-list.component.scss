@@ -2,7 +2,24 @@ table {
   width: 100%;
 }
 
-.mat-column-DatumZeit{
-  width: 100px;
-  text-align: left;
+.time {
+  font-weight: bold;
+}
+
+.date {
+  color: grey;
+  font-size: smaller;
+}
+
+.location {
+  color: grey;
+  font-size: smaller;
+}
+
+.img-responsive {
+  width: 30px;
+}
+
+.cell {
+  padding: 10px 0 10px 0;
 }

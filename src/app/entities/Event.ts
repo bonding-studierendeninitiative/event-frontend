@@ -8,6 +8,7 @@ export interface Event {
   EndeDatum: string;
   EndeUhrzeit: string;
   Typ: string;
+  TypIcon: string;
   Ort: string;
   WebText: string;
 }
