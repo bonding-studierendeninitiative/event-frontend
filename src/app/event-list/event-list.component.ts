@@ -50,12 +50,12 @@ export class EventListComponent implements OnInit {
           if (event.EndeUhrzeit) {
             event.StartUhrzeit += ' - ' + event.EndeUhrzeit.substring(0, 5);
           }
-          if (event.Typ) {
-            event.TypIcon = 'assets/event_icons/' + event.Typ.substring(0, event.Typ.length - 9) + '.png';
-            event.Typ = event.Typ.substring(0, event.Typ.length - 9);
-          }
           if (!events.includes(event.Typ)) {
             event.TypIcon = 'assets/event_icons/' + 'Standard.png';
+            event.Typ = event.Typ.substring(0, event.Typ.length - 9);
+          }
+          if (event.Typ) {
+            event.TypIcon = 'assets/event_icons/' + event.Typ.substring(0, event.Typ.length - 9) + '.png';
             event.Typ = event.Typ.substring(0, event.Typ.length - 9);
           }
         });
