@@ -9,11 +9,8 @@ li {
 .container {
    display: grid;
    grid-template-columns: 10vw auto 10vw;
-   grid-template-rows: 10vh auto 10vh;
-   padding-left: 1vw;
-   padding-right: 1vw;
-   padding-top: 1vh;
-   padding-bottom: 1vh;
+   grid-template-rows: 10vh auto 5vh;
+   padding: 1vh 1vw;
 }
 app-header {
     grid-column-start: 1;
