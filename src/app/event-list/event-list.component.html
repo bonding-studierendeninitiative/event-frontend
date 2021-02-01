@@ -5,23 +5,28 @@
 
   <ng-container matColumnDef="Typ">
     <th mat-header-cell *matHeaderCellDef> Typ </th>
-    <td mat-cell *matCellDef="let element"> {{element.Typ}} </td>
+    <td class="cell" mat-cell *matCellDef="let element">
+      <div>
+        <div class="icon"><img class="img-responsive" [src]="element.TypIcon"/></div>
+        <div class="typ-text">{{element.Typ}}</div>
+      </div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="DatumZeit">
     <th mat-header-cell *matHeaderCellDef> Termin </th>
-    <mat-cell *matCellDef="let element">
+    <td class="cell" mat-cell *matCellDef="let element">
       <div>
         <div class="time">{{element.StartUhrzeit}}</div>
         <div class="date">{{element.StartDatum}}</div>
         <div class="location">{{element.HSG}}</div>
       </div>
-    </mat-cell>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="Veranstaltung">
     <th mat-header-cell *matHeaderCellDef> Veranstaltung </th>
-    <td mat-cell *matCellDef="let element"> {{element.Titel}} </td>
+    <td class="cell" mat-cell *matCellDef="let element"> {{element.Titel}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
