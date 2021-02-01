@@ -1,7 +1,7 @@
 <br>
 <br>
 
-<div [className]="isMobile ? 'grid-mobile' : 'grid-desktop'">
+<div *ngIf="event" [className]="isMobile ? 'grid-mobile' : 'grid-desktop'">
   <div class="title">{{event.Titel}}</div>
   <div class="date">
     <span class="material-icons">schedule</span>
@@ -22,6 +22,6 @@
 <br>
 <br>
 
-<div [innerHTML]="event.WebText"></div>
+<div *ngIf="event" [innerHTML]="event.WebText"></div>
 
 <br>

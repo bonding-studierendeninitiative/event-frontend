@@ -21,7 +21,6 @@ export class EventDetailsComponent implements OnInit {
               private formatter: EventFormatterService) { }
 
   ngOnInit(): void {
-    console.log(this.isMobile);
     this.eventService.getEvent(this.activeRoute.snapshot.params.id).subscribe((data) => {
       this.event = data;
       this.formatter.formatEvent(this.event);
@@ -33,7 +32,6 @@ export class EventDetailsComponent implements OnInit {
   }
 
   register(): void {
-    console.log('test');
     window.location.href = 'https://www2.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=' + this.event.ID;
   }
 }
