@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EventListComponent implements OnInit {
   events: Event[];
-  displayedColumns: string[] = ['DatumZeit', 'Veranstaltung', 'Standort'];
+  displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute) {
@@ -33,7 +33,7 @@ export class EventListComponent implements OnInit {
           const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
           event.StartDatum = new Date(event.StartDatum).toLocaleDateString('de-DE', options);
           if (event.EndeDatum) {
-            event.StartDatum += ' - \n' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
+            event.StartDatum += ' - ' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
           }
           if (!event.StartUhrzeit) {
             event.StartUhrzeit = 'ganztägig';
@@ -41,7 +41,7 @@ export class EventListComponent implements OnInit {
             event.StartUhrzeit = event.StartUhrzeit.substring(0, 5);
           }
           if (event.EndeUhrzeit) {
-            event.StartUhrzeit += ' - \n' + event.EndeUhrzeit.substring(0, 5);
+            event.StartUhrzeit += ' - ' + event.EndeUhrzeit.substring(0, 5);
           }
         });
       });

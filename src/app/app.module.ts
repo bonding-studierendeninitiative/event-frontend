@@ -10,8 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { EventServiceService } from './services/event-service.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -20,15 +21,16 @@ import {MatSortModule} from '@angular/material/sort';
     HeaderComponent,
     FooterComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatTableModule,
-        MatSortModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSortModule,
+    MatCardModule,
+    MatTableModule
+  ],
   providers: [
     EventServiceService
   ],
