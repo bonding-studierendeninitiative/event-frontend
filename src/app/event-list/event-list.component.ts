@@ -13,6 +13,8 @@ export class EventListComponent implements OnInit {
   displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
   private HSGs = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
     'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
+  private Icons = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
+    'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute,

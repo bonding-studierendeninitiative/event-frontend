@@ -1,16 +1,43 @@
+.grid-desktop {
+  display: grid;
+  grid-template-areas:
+    'header header header btn'
+    'left middle right btn';
+}
+
+.grid-mobile {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'left btn'
+    'middle btn'
+    'right btn';
+}
+
 .title {
   font-weight: bold;
+  grid-area: header;
 }
 
 .date {
+  grid-area: left;
   color: grey;
   font-size: small;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
+}
+
+.material-icons {
+  padding-right: 3px;
 }
 
 .location {
+  grid-area: middle;
   font-size: small;
-  padding-left: 10px;
-  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
 }
 
 .img-responsive {
@@ -18,17 +45,19 @@
 }
 
 .type {
+  grid-area: right;
   font-size: smaller;
-  padding-left: 10px;
-  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
 }
 
 .table {
   width: auto;
-  display: inline;
 }
 
 .button {
-  width: auto;
-  display: inline;
+  padding-left: 3px;
+  grid-area: btn;
+  align-self: center;
 }

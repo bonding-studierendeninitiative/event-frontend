@@ -1,19 +1,22 @@
 <br>
 <br>
 
-<table class="table">
-  <tr>
-    <td class="title">{{event.Titel}}</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="date"><img class="img-responsive" [src]="'assets/detail_icons/Uhr.png'"/> {{event.StartDatum}} {{event.StartUhrzeit}}</td>
-    <td class="location"><img class="img-responsive" [src]="'assets/detail_icons/Standort.png'"/> {{event.HSG}}</td>
-    <td class="type"><img class="img-responsive" [src]="event.TypIcon"/> {{event.Typ}}</td>
-  </tr>
-</table>
-<a class="button" mat-raised-button (click)="register()" color="primary">Anmelden</a>
+<div [className]="isMobile ? 'grid-mobile' : 'grid-desktop'">
+  <div class="title">{{event.Titel}}</div>
+  <div class="date">
+    <span class="material-icons">schedule</span>
+    {{event.StartDatum}} {{event.StartUhrzeit}}
+  </div>
+  <div class="location">
+    <span class="material-icons">place</span>
+    {{event.HSG}}
+  </div>
+  <div class="type">
+    <img class="img-responsive" [src]="event.TypIcon"/>
+    {{event.Typ}}
+  </div>
+  <a class="button" mat-raised-button (click)="register()" color="primary">Anmelden</a>
+</div>
 
 
 <br>

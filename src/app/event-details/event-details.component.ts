@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Event} from '../entities/Event';
 import {EventServiceService} from '../services/event-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {isMobile} from 'is-mobile';
 
 @Component({
   selector: 'app-event-details',
@@ -11,15 +12,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class EventDetailsComponent implements OnInit {
 
   event: Event;
+  isMobile = isMobile();
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.isMobile);
     this.eventService.getEvent(this.activeRoute.snapshot.params.id).subscribe((data) => {
       this.event = data;
-      console.log(this.event);
       const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
       this.event.StartDatum = new Date(this.event.StartDatum).toLocaleDateString('de-DE', options);
       if (this.event.EndeDatum) {
