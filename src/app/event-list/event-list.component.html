@@ -6,7 +6,7 @@
   <ng-container matColumnDef="Typ">
     <th mat-header-cell *matHeaderCellDef> Typ </th>
     <td class="cell" mat-cell *matCellDef="let element">
-      <div>
+      <div class="box">
         <div class="icon"><img class="img-responsive" [src]="element.TypIcon"/></div>
         <div class="typ-text">{{element.Typ}}</div>
       </div>
@@ -17,8 +17,9 @@
     <th mat-header-cell *matHeaderCellDef> Termin </th>
     <td class="cell" mat-cell *matCellDef="let element">
       <div>
-        <div class="time">{{element.StartUhrzeit}}</div>
         <div class="date">{{element.StartDatum}}</div>
+        <div class="time">{{element.StartUhrzeit}}</div>
+
         <div class="location">{{element.HSG}}</div>
       </div>
     </td>
@@ -26,7 +27,7 @@
 
   <ng-container matColumnDef="Veranstaltung">
     <th mat-header-cell *matHeaderCellDef> Veranstaltung </th>
-    <td class="cell" mat-cell *matCellDef="let element"> {{element.Titel}} </td>
+    <td class="title" mat-cell *matCellDef="let element"> {{element.Titel}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
