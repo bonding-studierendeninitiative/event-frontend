@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
 
+In dieser Anwendung wird die API "WEBSITE-EVENT-CACHE-HTML-2-JSON" angesprochen, die die geplanten Veranstaltungen aller bonding-Standorte liefert. Diese werden abgefragt und in einer Liste ausgegeben. 
+Mit Klick auf die einzelnen Einträge wird die Detailansicht zur gewählten Veranstaltung geöffnet.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
