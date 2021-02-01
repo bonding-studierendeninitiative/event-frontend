@@ -1,0 +1,31 @@
+stages:
+  - build
+  - deployregistry
+
+build:
+  image: "docker:latest"
+  services:
+  - name: docker:dind
+    command: ["--insecure-registry=docker-node1:5000"]
+  stage: build
+  tags:
+    - docker-node1
+  only:
+    - branches
+  script:
+    - docker build --no-cache -t event-frontend:$CI_COMMIT_BRANCH .
+
+deploy-to-registry:
+  image: "docker:latest"
+  services:
+  - name: docker:dind
+    command: ["--insecure-registry=docker-node1:5000"]
+  stage: deployregistry
+  tags:
+    - docker-node1
+  only:
+    - tags
+  script:
+    - docker build --no-cache -t event-frontend:$CI_COMMIT_TAG -t event-frontend:latest .
+    - docker image tag event-frontend:$CI_COMMIT_TAG $REGISTRY/event-frontend:$CI_COMMIT_TAG
+    - docker push $REGISTRY/event-frontend:$CI_COMMIT_TAG
