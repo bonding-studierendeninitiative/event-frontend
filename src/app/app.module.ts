@@ -13,13 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

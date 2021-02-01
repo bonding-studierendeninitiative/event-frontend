@@ -12,7 +12,11 @@ export class EventServiceService {
   constructor(private http: HttpClient) { }
 
   getAllEvents(): Observable<Event[]> {
-    const url = environment.apiBaseURL + 'eventList/';
-    return this.http.get<Event[]>(url);
+    return this.http.get<Event[]>(environment.apiBaseURL + 'eventList/');
+  }
+
+  getEvent(id: string): Observable<Event> {
+    console.log('test');
+    return this.http.get<Event>(environment.apiBaseURL + 'eventDetails/' + id);
   }
 }

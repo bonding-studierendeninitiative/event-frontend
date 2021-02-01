@@ -56,4 +56,8 @@ export class EventListComponent implements OnInit {
         });
       });
     }
+
+    routeDetails(event: Event): void {
+      this.router.navigate(['/eventDetails/', event.ID]);
+  }
 }
