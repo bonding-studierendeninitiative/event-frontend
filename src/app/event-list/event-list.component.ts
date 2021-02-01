@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Event} from '../entities/Event';
 import {EventServiceService} from '../services/event-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {EventFormatterService} from '../services/event-formatter.service';
 
 @Component({
   selector: 'app-event-list',
@@ -13,12 +14,11 @@ export class EventListComponent implements OnInit {
   displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
   private HSGs = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
     'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
-  private Icons = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
-    'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private formatter: EventFormatterService) {
   }
 
   ngOnInit(): void {
@@ -38,28 +38,7 @@ export class EventListComponent implements OnInit {
         this.events.sort((a, b) => a.StartDatum.localeCompare(b.StartDatum));
 
         this.events.forEach(event => {
-          const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
-          const events = ["Engineering Competition", "European Workshop", "Exkursion", "Fallstudie", "Industry Night", "Infoabend", "Infostand", "Kamin-Abend", "Kompass", "Messe", "nicht bonding", "Runder Tisch", "Semesterplaner", "Sonstige Events", "Thementag", "Training", "Vortrag", "Workshop"];
-          event.StartDatum = new Date(event.StartDatum).toLocaleDateString('de-DE', options);
-          if (event.EndeDatum) {
-            event.StartDatum += ' - ' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
-          }
-          if (!event.StartUhrzeit) {
-            event.StartUhrzeit = 'ganztägig';
-          } else {
-            event.StartUhrzeit = event.StartUhrzeit.substring(0, 5);
-          }
-          if (event.EndeUhrzeit) {
-            event.StartUhrzeit += ' - ' + event.EndeUhrzeit.substring(0, 5);
-          }
-          if (!events.includes(event.Typ)) {
-            event.TypIcon = 'assets/event_icons/' + 'Standard.png';
-            event.Typ = event.Typ.substring(0, event.Typ.length - 9);
-          }
-          if (event.Typ) {
-            event.TypIcon = 'assets/event_icons/' + event.Typ.substring(0, event.Typ.length - 9) + '.png';
-            event.Typ = event.Typ.substring(0, event.Typ.length - 9);
-          }
+          this.formatter.formatEvent(event);
         });
       });
     }

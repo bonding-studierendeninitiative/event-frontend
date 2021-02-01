@@ -3,6 +3,7 @@ import {Event} from '../entities/Event';
 import {EventServiceService} from '../services/event-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isMobile} from 'is-mobile';
+import {EventFormatterService} from '../services/event-formatter.service';
 
 @Component({
   selector: 'app-event-details',
@@ -16,29 +17,14 @@ export class EventDetailsComponent implements OnInit {
 
   constructor(private eventService: EventServiceService,
               private activeRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private formatter: EventFormatterService) { }
 
   ngOnInit(): void {
     console.log(this.isMobile);
     this.eventService.getEvent(this.activeRoute.snapshot.params.id).subscribe((data) => {
       this.event = data;
-      const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
-      this.event.StartDatum = new Date(this.event.StartDatum).toLocaleDateString('de-DE', options);
-      if (this.event.EndeDatum) {
-        this.event.StartDatum += ' - ' + new Date(this.event.EndeDatum).toLocaleDateString('de-DE', options);
-          }
-      if (!this.event.StartUhrzeit) {
-        this.event.StartUhrzeit = 'ganztägig';
-      } else {
-        this.event.StartUhrzeit = this.event.StartUhrzeit.substring(0, 5);
-      }
-      if (this.event.EndeUhrzeit) {
-        this.event.StartUhrzeit += ' - ' + this.event.EndeUhrzeit.substring(0, 5);
-          }
-      if (this.event.Typ) {
-        this.event.TypIcon = 'assets/event_icons/' + this.event.Typ.substring(0, this.event.Typ.length - 9) + '.png';
-        this.event.Typ = this.event.Typ.substring(0, this.event.Typ.length - 9);
-      }
+      this.formatter.formatEvent(this.event);
     },
       (err) => {
       console.log(err);
