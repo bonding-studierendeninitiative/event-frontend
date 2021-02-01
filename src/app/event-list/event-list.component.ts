@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from '../entities/Event';
 import {EventServiceService} from '../services/event-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -11,15 +11,21 @@ import {ActivatedRoute} from '@angular/router';
 export class EventListComponent implements OnInit {
   events: Event[];
   displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
+  private HSGs = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
+    'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
 
   constructor(private eventService: EventServiceService,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
       this.eventService.getAllEvents().subscribe((data) => {
         this.events = data;
         if (this.activeRoute.snapshot.params.location) {
+          if (!(this.HSGs.includes(this.activeRoute.snapshot.params.location))) {
+            this.router.navigate(['']);
+          }
           this.events = this.events.filter(event => {
             if (event.HSG.toLocaleLowerCase() === this.activeRoute.snapshot.params.location.toString()
               || event.HSG === '- überregional -') {
