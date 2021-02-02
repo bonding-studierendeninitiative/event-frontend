@@ -15,7 +15,7 @@
     <img class="img-responsive" [src]="event.TypIcon"/>
     {{event.Typ}}
   </div>
-  <a class="button" mat-raised-button (click)="register()" color="primary">Anmelden</a>
+  <a *ngIf="event.Anmeldung == 'Offen'" class="button" mat-raised-button (click)="register()" color="primary">Anmelden</a>
 </div>
 
 
