@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Event} from '../entities/Event';
-import {EventServiceService} from '../services/event-service.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {isMobile} from 'is-mobile';
-import {EventFormatterService} from '../services/event-formatter.service';
+import { Event } from '../entities/Event';
+import { EventServiceService } from '../services/event-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { isMobile } from 'is-mobile';
+import { EventFormatterService } from '../services/event-formatter.service';
+
 
 @Component({
   selector: 'app-event-details',
@@ -16,9 +17,9 @@ export class EventDetailsComponent implements OnInit {
   isMobile = isMobile();
 
   constructor(private eventService: EventServiceService,
-              private activeRoute: ActivatedRoute,
-              private router: Router,
-              private formatter: EventFormatterService) { }
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private formatter: EventFormatterService) { }
 
   ngOnInit(): void {
     this.eventService.getEvent(this.activeRoute.snapshot.params.id).subscribe((data) => {
@@ -26,9 +27,9 @@ export class EventDetailsComponent implements OnInit {
       this.formatter.formatEvent(this.event);
     },
       (err) => {
-      console.log(err);
-      this.router.navigate(['/']);
-    });
+        console.log(err);
+        this.router.navigate(['/']);
+      });
   }
 
   register(): void {
