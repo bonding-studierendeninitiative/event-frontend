@@ -16,7 +16,6 @@ export class EventServiceService {
   }
 
   getEvent(id: string): Observable<Event> {
-    console.log('test');
     return this.http.get<Event>(environment.apiBaseURL + 'eventDetails/' + id);
   }
 }
