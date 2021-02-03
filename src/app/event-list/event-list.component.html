@@ -20,7 +20,7 @@
         <div class="date">{{element.StartDatum}}</div>
         <div class="time">{{element.StartUhrzeit}}</div>
 
-        <div class="location">{{element.HSG}}</div>
+        <div class="location">{{element.HSG.replaceAll('-', '')}}</div>
       </div>
     </td>
   </ng-container>
