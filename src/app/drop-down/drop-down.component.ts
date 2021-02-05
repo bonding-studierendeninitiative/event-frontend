@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+
 import {Component} from '@angular/core';
 
-interface Food {
+interface Location {
   value: string;
   viewValue: string;
 }
@@ -11,7 +11,7 @@ interface Food {
   templateUrl: './drop-down.component.html',
   styleUrls: ['./drop-down.component.scss']
 })
-export class DropDownComponent implements OnInit {
+export class DropDownComponent {
 
   constructor() { }
 
