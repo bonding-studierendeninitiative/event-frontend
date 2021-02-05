@@ -21,7 +21,7 @@ export class DropDownComponent {
   selectedValue: string;
   selectedCar: string;
 
-  foods: Location[] = [
+  locations: Location[] = [
     {value: 'aachen', viewValue: 'Aachen'},
     {value: 'pizza-1', viewValue: 'Pizza'},
     {value: 'tacos-2', viewValue: 'Tacos'}
