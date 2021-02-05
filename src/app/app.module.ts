@@ -14,6 +14,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { DropDownComponent } from './drop-down/drop-down.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     EventListComponent,
     HeaderComponent,
     FooterComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    DropDownComponent
   ],
   imports: [
     BrowserModule,
