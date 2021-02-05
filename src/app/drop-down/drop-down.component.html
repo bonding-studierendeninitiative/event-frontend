@@ -1,6 +1,6 @@
 <form>
     <h4>Wähle Standort:</h4>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label>Standort</mat-label>
       <mat-select [(ngModel)]="selectedValue" name="location">
         <mat-option *ngFor="let location of locations" [value]="location.value">
