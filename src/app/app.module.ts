@@ -16,6 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { DropDownComponent } from './event-list/drop-down/drop-down.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSortModule,
     MatCardModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     EventServiceService
