@@ -23,8 +23,16 @@ export class DropDownComponent {
 
   locations: Location[] = [
     {value: 'aachen', viewValue: 'Aachen'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value: 'berlin', viewValue: 'Berlin'},
+    {value: 'bochum', viewValue: 'Bochum'},
+    {value: 'braunschweig', viewValue: 'Braunschweig'},
+    {value: 'bremen', viewValue: 'Bremen'},
+    {value: 'dresden', viewValue: 'Dresden'},
+    {value: 'erlangen', viewValue: 'Erlangen'},
+    {value: 'hamburg', viewValue: 'Hamburg'},
+    {value: 'kaiserslautern', viewValue: 'Kaiserslautern'},
+    {value: 'karlsruhe', viewValue: 'Karlsruhe'},
+    {value: 'stuttgart', viewValue: 'Stuttgart'},
   ];
 
 }
