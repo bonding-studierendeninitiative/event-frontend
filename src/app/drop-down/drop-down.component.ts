@@ -19,6 +19,9 @@ export class DropDownComponent {
 
   ngOnInit(): void {
     this.selectedValue=this.activeRoute.snapshot.params.location;
+    this.activeRoute.params.subscribe(routeParams => {
+      this.selectedValue=this.activeRoute.snapshot.params.location;
+    });
     }
 
   selectedValue: string;
@@ -42,8 +45,7 @@ export class DropDownComponent {
     if (value == '') {
       this.router.navigateByUrl('/')
     } else {
-      this.router.navigateByUrl('/', {skipLocationChange:true}).then(()=>
-      this.router.navigate([value]));
+      this.router.navigate([value]);
     }    
   }
 }

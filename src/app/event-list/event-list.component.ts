@@ -19,9 +19,15 @@ export class EventListComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private formatter: EventFormatterService) {
+      this.activeRoute.params.subscribe(routeParams => {
+        this.loadData();
+      });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  }
+
+  loadData() {
     this.eventService.getAllEvents().subscribe((data) => {
       this.events = data;
       if (this.activeRoute.snapshot.params.location) {
@@ -42,7 +48,6 @@ export class EventListComponent implements OnInit {
       });
     });
   }
-
   routeDetails(event: Event): void {
     if (event.Typ == 'Messe') {
       if (event.HSG != '- überregional -') {
