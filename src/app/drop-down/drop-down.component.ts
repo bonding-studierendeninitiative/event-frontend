@@ -39,7 +39,11 @@ export class DropDownComponent {
   ];
 
   changeValue(value):void{
-    this.router.navigateByUrl('/', {skipLocationChange:true}).then(()=>
-    this.router.navigate([value]));
+    if (value == '') {
+      this.router.navigateByUrl('/')
+    } else {
+      this.router.navigateByUrl('/', {skipLocationChange:true}).then(()=>
+      this.router.navigate([value]));
+    }    
   }
 }
