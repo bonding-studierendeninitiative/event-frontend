@@ -1,12 +1,10 @@
 <form>
-    <h4>Wähle Standort:</h4>
-    <mat-form-field>
-      <mat-label>Standort</mat-label>
-      <mat-select [(ngModel)]="selectedValue" name="location">
-        <mat-option *ngFor="let location of locations" [value]="location.value">
-          {{location.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <p> Selected location: {{selectedValue}} </p>
-  </form>
+  <mat-form-field appearance="fill"> 
+    <mat-label>Standort</mat-label>
+    <mat-select [(ngModel)]="selectedValue" (selectionChange)="changeValue($event.value)" name="location">
+      <mat-option *ngFor="let location of locations" [value]="location.value">
+        {{location.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

@@ -1,5 +1,6 @@
 
 import {Component} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Location {
   value: string;
@@ -13,15 +14,17 @@ interface Location {
 })
 export class DropDownComponent {
 
-  constructor() { }
+  constructor(private activeRoute: ActivatedRoute, private router: Router) { }
+   
 
   ngOnInit(): void {
-  }
+    this.selectedValue=this.activeRoute.snapshot.params.location;
+    }
 
   selectedValue: string;
-  selectedCar: string;
 
   locations: Location[] = [
+    {value: '', viewValue: 'alle'},
     {value: 'aachen', viewValue: 'Aachen'},
     {value: 'berlin', viewValue: 'Berlin'},
     {value: 'bochum', viewValue: 'Bochum'},
@@ -35,4 +38,8 @@ export class DropDownComponent {
     {value: 'stuttgart', viewValue: 'Stuttgart'},
   ];
 
+  changeValue(value):void{
+    this.router.navigateByUrl('/', {skipLocationChange:true}).then(()=>
+    this.router.navigate([value]));
+  }
 }
