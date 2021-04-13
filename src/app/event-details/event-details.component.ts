@@ -33,6 +33,6 @@ export class EventDetailsComponent implements OnInit {
   }
 
   register(): void {
-    window.location.href = 'https://www2.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=' + this.event.ID;
+    window.location.href = 'https://www2.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=' + this.event.ID + '#anmelden';
   }
 }
