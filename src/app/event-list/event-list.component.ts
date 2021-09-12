@@ -12,7 +12,7 @@ import { EventFormatterService } from '../services/event-formatter.service';
 export class EventListComponent implements OnInit {
   events: Event[];
   displayedColumns: string[] = ['Typ', 'DatumZeit', 'Veranstaltung'];
-  private HSGs = ['aachen', 'berlin', 'bochum', 'braunschweig', 'bremen',
+  private HSGs = ['aachen', 'berlin', 'braunschweig', 'bremen',
     'dresden', 'erlangen', 'hamburg', 'kaiserslautern', 'karlsruhe', 'stuttgart'];
 
   constructor(private eventService: EventServiceService,

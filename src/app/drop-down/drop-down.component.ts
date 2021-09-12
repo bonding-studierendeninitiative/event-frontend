@@ -30,7 +30,6 @@ export class DropDownComponent {
     {value: '', viewValue: 'alle'},
     {value: 'aachen', viewValue: 'Aachen'},
     {value: 'berlin', viewValue: 'Berlin'},
-    {value: 'bochum', viewValue: 'Bochum'},
     {value: 'braunschweig', viewValue: 'Braunschweig'},
     {value: 'bremen', viewValue: 'Bremen'},
     {value: 'dresden', viewValue: 'Dresden'},
