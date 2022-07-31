@@ -1,5 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Event} from '../entities/Event';
+import * as dayjs from 'dayjs';
+import * as UTC from 'dayjs/plugin/utc';
+dayjs.extend(UTC);
+import * as Timezone from 'dayjs/plugin/timezone';
+dayjs.extend(Timezone);
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +19,11 @@ export class EventFormatterService {
   }
 
   formatEvent(event: Event): void {
-    const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
-    event.StartDatum = new Date(event.StartDatum).toLocaleDateString('de-DE', options);
+    const adjustedStartDate = dayjs.tz(event.StartDatum, "Europe/Berlin").format('DD.MM.YYYY');
+    event.StartDatum = adjustedStartDate;
+    
     if (event.EndeDatum) {
-      event.StartDatum += ' - ' + new Date(event.EndeDatum).toLocaleDateString('de-DE', options);
+      event.StartDatum += ' - ' + dayjs.tz(event.EndeDatum, "Europe/Berlin").format('DD.MM.YYYY');
     }
     if (!event.StartUhrzeit) {
       event.StartUhrzeit = 'ganztägig';
@@ -35,3 +41,4 @@ export class EventFormatterService {
     }
   }
 }
+
