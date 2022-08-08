@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseURL: "http://localhost:5000/api/v0/"
+  apiBaseURL: "https://events.bonding.de/api/v0/"
 };
 
 /*
