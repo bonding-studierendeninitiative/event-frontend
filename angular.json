@@ -119,7 +119,6 @@
       }
     }
   },
-  "defaultProject": "event-frontend",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
