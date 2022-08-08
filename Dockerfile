@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . /app
 
-RUN npx ng build --prod --output-path ./dist
+RUN npx ng build -c production --output-path ./dist
 
 # image
 FROM webdevops/php-apache
