@@ -1,12 +1,12 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-export function EventLogic({
+export default function EventLayout({
   children,
-}: {
-  children: ReactNode[] | ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

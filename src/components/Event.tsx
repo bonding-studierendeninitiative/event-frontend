@@ -8,7 +8,7 @@ import { getTypeByCategory, strip } from "@/lib/events";
 
 export function _bondingEvent({ event }: { event: Event }) {
   return (
-    <div className="border-neutral-20 border shadow-md max-w-[45ch] flex flex-col rounded-xl">
+    <div className="border-neutral-20 border shadow max-w-[45ch] flex flex-col rounded-xl">
       <div className="p-4 flex flex-col flex-grow gap-2 items-start">
         <EventTitle title={event.title} />
         <div className="flex gap-x-4 gap-y-2 items-center flex-wrap">

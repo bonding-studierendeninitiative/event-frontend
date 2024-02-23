@@ -1,5 +1,3 @@
-"use client";
-
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
   Select,
@@ -10,12 +8,29 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { redirect } from "next/navigation";
+import { FormSubmitButton } from "./FormSubmitButton";
 
-type EventsNavProps = {
-  search: string;
-  localGroup: string;
-};
-export const EventsNav = ({ search, localGroup }: EventsNavProps) => {
+export async function filterEvents(formData: FormData) {
+  "use server";
+
+  const search = formData.get("search") as string;
+  const localGroup = formData.get("localGroup") as string;
+
+  const searchParams = new URLSearchParams({
+    ...(search && { search: search.trim() }),
+    ...(localGroup && { localGroup: localGroup.trim() }),
+  });
+
+  redirect(`?${searchParams.toString()}`);
+}
+
+export async function EventsNav({
+  defaultValues,
+}: {
+  defaultValues: { search: string; localGroup: string };
+}) {
   const options = [
     { value: "aachen", label: "Aachen" },
     { value: "berlin", label: "Berlin" },
@@ -30,36 +45,20 @@ export const EventsNav = ({ search, localGroup }: EventsNavProps) => {
     { value: "stuttgart", label: "Stuttgart" },
   ];
   return (
-    <div className="flex flex-col sm:flex-row gap-8 items-center">
+    <form
+      action={filterEvents}
+      className="flex flex-col sm:flex-row gap-8 items-center"
+    >
       <div className="inline-flex gap-4 items-center min-w-80">
         <MagnifyingGlassIcon className="w-4" />
         <Input
           placeholder="Finde Events in deiner Nähe"
-          name="event-search"
+          name="search"
+          defaultValue={defaultValues.search}
           className="flex-grow border-blue border-2 border-solid rounded-lg"
-          onChange={(e) => {
-            parent.postMessage(
-              {
-                type: "Event-Component-Search",
-                value: e.target.value,
-              },
-              "*"
-            );
-          }}
         />
       </div>
-      <Select
-        value={localGroup}
-        onValueChange={(e) => {
-          parent.postMessage(
-            {
-              type: "Event-Component-Local-Group",
-              value: e,
-            },
-            "*"
-          );
-        }}
-      >
+      <Select name="localGroup" defaultValue={defaultValues.localGroup}>
         <SelectContent className="bg-blue">
           <SelectItem className="text-white" value="alle">
             Alle Standorte
@@ -81,6 +80,7 @@ export const EventsNav = ({ search, localGroup }: EventsNavProps) => {
           <SelectValue placeholder="Wähle einen Standort aus" />
         </SelectTrigger>
       </Select>
-    </div>
+      <FormSubmitButton>Events filtern</FormSubmitButton>
+    </form>
   );
-};
+}

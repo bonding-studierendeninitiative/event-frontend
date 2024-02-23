@@ -1,34 +1,26 @@
-"use server";
-
 import { getEvents } from "@/lib/api";
 import { adaptEventResource } from "@/lib/dto";
 import { NoEvents } from "./NoEvents";
 import { _bondingEvent } from "./Event";
+// import { useQuery } from "@tanstack/react-query";
 
-export const Events = async ({
-  localGroup,
-  search,
+export async function Events({
+  filterValues,
 }: {
-  localGroup: string;
-  search: string;
-}) => {
-  /* const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-    return () => {
-      setMounted(false);
-    };
-  }, []);
-  const { data, isLoading, isSuccess } = useQuery({
+  filterValues: { search: string; localGroup: string };
+}) {
+  const localGroup = filterValues.localGroup;
+  const search = filterValues.search;
+
+  /* const { data } = useQuery({
     queryKey: ["events"],
     queryFn: getEvents,
-    enabled: mounted,
-  });*/
+  }); */
 
-  const data = await getEvents();
+  const events = await getEvents();
 
   const filteredEvents =
-    data
+    events
       ?.map(adaptEventResource)
       ?.sort(
         (a, b) =>
@@ -65,4 +57,4 @@ export const Events = async ({
       })}
     </div>
   );
-};
+}

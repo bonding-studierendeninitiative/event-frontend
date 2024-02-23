@@ -14,7 +14,7 @@ export function EventSublineItem({
     <span
       title={title}
       className={cn(
-        "font-bold tracking-wide text-sm flex flex-nowrap items-center gap-1",
+        "font-semibold tracking-wide text-sm flex flex-nowrap items-center gap-1",
         className
       )}
     >

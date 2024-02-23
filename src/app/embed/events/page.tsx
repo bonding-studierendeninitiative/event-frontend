@@ -1,27 +1,35 @@
 import { Events } from "@/components/Events";
 import { EventsNav } from "@/components/EventsNav";
-import { EventLogic } from "./logic";
+import { getEvents } from "@/lib/api";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
-export default function EventsPage({
+export default async function EventsPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // const ref = useRef<HTMLDivElement>(null);
-  const search: string = (searchParams?.search as string) || "";
-  const localGroup: string = (searchParams?.localGroup as string) || "alle";
+  const showNavigation: boolean = Boolean(searchParams?.showNavigation) || true;
+  const search = (searchParams?.search as string) || "";
+  const localGroup = (searchParams?.localGroup as string) || "alle";
+  const filterValues = { search, localGroup };
+
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["events"],
+    queryFn: getEvents,
+  });
 
   return (
     <>
-      <EventLogic>
-        <EventsNav
-          // setLocalGroup={setLocalGroup}
-          localGroup={localGroup}
-          search={search}
-          // setSearch={setSearch}
-        />
-        <Events localGroup={localGroup} search={search} />
-      </EventLogic>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        {showNavigation && <EventsNav defaultValues={filterValues} />}
+        <Events filterValues={filterValues} />
+      </HydrationBoundary>
     </>
   );
 }
