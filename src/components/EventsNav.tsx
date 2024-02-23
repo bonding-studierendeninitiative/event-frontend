@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { redirect } from "next/navigation";
 import { FormSubmitButton } from "./FormSubmitButton";
 
@@ -17,10 +16,16 @@ export async function filterEvents(formData: FormData) {
 
   const search = formData.get("search") as string;
   const localGroup = formData.get("localGroup") as string;
+  const hideLocalGroupSelector = formData.get(
+    "hideLocalGroupSelector"
+  ) as string;
 
   const searchParams = new URLSearchParams({
     ...(search && { search: search.trim() }),
     ...(localGroup && { localGroup: localGroup.trim() }),
+    ...(hideLocalGroupSelector && {
+      hideLocalGroupSelector,
+    }),
   });
 
   redirect(`?${searchParams.toString()}`);
@@ -28,8 +33,10 @@ export async function filterEvents(formData: FormData) {
 
 export async function EventsNav({
   defaultValues,
+  hideLocalGroupSelector,
 }: {
   defaultValues: { search: string; localGroup: string };
+  hideLocalGroupSelector: boolean;
 }) {
   const options = [
     { value: "aachen", label: "Aachen" },
@@ -58,28 +65,41 @@ export async function EventsNav({
           className="flex-grow border-blue border-2 border-solid rounded-lg"
         />
       </div>
-      <Select name="localGroup" defaultValue={defaultValues.localGroup}>
-        <SelectContent className="bg-blue">
-          <SelectItem className="text-white" value="alle">
-            Alle Standorte
-          </SelectItem>
-          <SelectSeparator />
-          {options.map((option) => {
-            return (
-              <SelectItem
-                key={option.value}
-                className="text-white"
-                value={option.value}
-              >
-                {option.label}
-              </SelectItem>
-            );
-          })}
-        </SelectContent>
-        <SelectTrigger className="flex gap-2 min-w-40 justify-between items-center px-5 py-3 rounded-lg bg-blue text-white">
-          <SelectValue placeholder="Wähle einen Standort aus" />
-        </SelectTrigger>
-      </Select>
+      {hideLocalGroupSelector ? (
+        <input
+          type="hidden"
+          name="localGroup"
+          value={defaultValues.localGroup}
+        />
+      ) : (
+        <Select name="localGroup" defaultValue={defaultValues.localGroup}>
+          <SelectContent className="bg-blue">
+            <SelectItem className="text-white" value="alle">
+              Alle Standorte
+            </SelectItem>
+            <SelectSeparator />
+            {options.map((option) => {
+              return (
+                <SelectItem
+                  key={option.value}
+                  className="text-white"
+                  value={option.value}
+                >
+                  {option.label}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+          <SelectTrigger className="flex gap-2 min-w-40 justify-between items-center px-5 py-3 rounded-lg bg-blue text-white">
+            <SelectValue placeholder="Wähle einen Standort aus" />
+          </SelectTrigger>
+        </Select>
+      )}
+      <input
+        type="hidden"
+        name="hideLocalGroupSelector"
+        value={hideLocalGroupSelector ? "true" : "false"}
+      />
       <FormSubmitButton>Events filtern</FormSubmitButton>
     </form>
   );
