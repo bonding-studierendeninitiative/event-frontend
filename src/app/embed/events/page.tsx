@@ -1,11 +1,5 @@
 import { Events } from "@/components/Events";
 import { EventsNav } from "@/components/EventsNav";
-import { getEvents } from "@/lib/api";
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from "@tanstack/react-query";
 
 export default async function EventsPage({
   searchParams,
@@ -17,26 +11,18 @@ export default async function EventsPage({
     searchParams?.hideLocalGroupSelector === "true";
   const search = (searchParams?.search as string) || "";
   const localGroup = (searchParams?.localGroup as string) || "alle";
-  const filterValues = { search, localGroup };
-
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ["events"],
-    queryFn: getEvents,
-  });
+  const category = (searchParams?.category as string) || "alle";
+  const filterValues = { search, localGroup, category };
 
   return (
     <>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        {showNavigation && (
-          <EventsNav
-            hideLocalGroupSelector={hideLocalGroupSelector}
-            defaultValues={filterValues}
-          />
-        )}
-        <Events filterValues={filterValues} />
-      </HydrationBoundary>
+      {showNavigation && (
+        <EventsNav
+          hideLocalGroupSelector={hideLocalGroupSelector}
+          defaultValues={filterValues}
+        />
+      )}
+      <Events filterValues={filterValues} />
     </>
   );
 }

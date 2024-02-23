@@ -6,10 +6,11 @@ import { _bondingEvent } from "./Event";
 export async function Events({
   filterValues,
 }: {
-  filterValues: { search: string; localGroup: string };
+  filterValues: { search: string; localGroup: string; category?: string };
 }) {
   const localGroup = filterValues.localGroup;
   const search = filterValues.search;
+  const category = filterValues.category;
 
   const events = await getEvents();
 
@@ -26,6 +27,13 @@ export async function Events({
           return true;
         } else {
           return localGroup == item.localGroup.toLowerCase();
+        }
+      })
+      .filter((item) => {
+        if (!category || category === "alle") {
+          return true;
+        } else {
+          return item.type.toLowerCase().includes(category);
         }
       })
       .filter((item) => {
