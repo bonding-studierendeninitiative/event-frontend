@@ -2,7 +2,6 @@ import { getEvents } from "@/lib/api";
 import { adaptEventResource } from "@/lib/dto";
 import { NoEvents } from "./NoEvents";
 import { _bondingEvent } from "./Event";
-// import { useQuery } from "@tanstack/react-query";
 
 export async function Events({
   filterValues,
@@ -11,11 +10,6 @@ export async function Events({
 }) {
   const localGroup = filterValues.localGroup;
   const search = filterValues.search;
-
-  /* const { data } = useQuery({
-    queryKey: ["events"],
-    queryFn: getEvents,
-  }); */
 
   const events = await getEvents();
 

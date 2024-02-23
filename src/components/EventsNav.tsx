@@ -46,8 +46,8 @@ export async function EventsNav({
     { value: "dresden", label: "Dresden" },
     { value: "erlangen", label: "Erlangen" },
     { value: "hamburg", label: "Hamburg" },
-    { value: "karlsruhe", label: "Karlsruhe" },
     { value: "kaiserslautern", label: "Kaiserslautern" },
+    { value: "karlsruhe", label: "Karlsruhe" },
     { value: "nürnberg", label: "Nürnberg" },
     { value: "stuttgart", label: "Stuttgart" },
   ];

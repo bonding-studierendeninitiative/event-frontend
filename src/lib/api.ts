@@ -1,5 +1,9 @@
 export const getEvents: () => Promise<API_V0_Event[]> = async () => {
-  const response = await fetch("https://events.bonding.de/api/v0/eventList");
+  const response = await fetch('https://events.bonding.de/api/v0/eventList', {
+    next: {
+      revalidate: 15 * 60,
+    },
+  });
   return await response.json();
 };
 
