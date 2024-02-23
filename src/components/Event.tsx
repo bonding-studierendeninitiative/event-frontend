@@ -22,6 +22,7 @@ export function _bondingEvent({ event }: { event: Event }) {
         <a
           href={`https://www2.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=${event.id}`}
           className="text-white bg-blue text-center flex-grow rounded-full px-4 py-2 no-underline"
+          target="_blank"
         >
           Mehr Informationen & Anmeldung
         </a>
