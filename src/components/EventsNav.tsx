@@ -10,6 +10,7 @@ import {
 import { Input } from "./ui/input";
 import { redirect } from "next/navigation";
 import { FormSubmitButton } from "./FormSubmitButton";
+import { ClientForm } from "@/app/embed/events/form";
 
 export async function filterEvents(formData: FormData) {
   "use server";
@@ -54,7 +55,7 @@ export async function EventsNav({
     { value: "stuttgart", label: "Stuttgart" },
   ];
   return (
-    <form
+    <ClientForm
       action={filterEvents}
       className="flex flex-col sm:flex-row gap-8 items-center"
     >
@@ -103,7 +104,9 @@ export async function EventsNav({
         value={hideLocalGroupSelector ? "true" : "false"}
       />
       <input type="hidden" name="category" value={defaultValues.category} />
-      <FormSubmitButton>Events filtern</FormSubmitButton>
-    </form>
+      <FormSubmitButton className="group-data-[touched=true]/form:animate-pulse">
+        Events filtern
+      </FormSubmitButton>
+    </ClientForm>
   );
 }

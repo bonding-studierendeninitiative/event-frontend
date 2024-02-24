@@ -1,6 +1,5 @@
 import { Events } from "@/components/Events";
 import { EventsNav } from "@/components/EventsNav";
-import Image from "next/image";
 
 export default function Home({
   searchParams,
