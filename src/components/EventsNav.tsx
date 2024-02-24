@@ -19,13 +19,15 @@ export async function filterEvents(formData: FormData) {
   const hideLocalGroupSelector = formData.get(
     "hideLocalGroupSelector"
   ) as string;
+  const category = formData.get("category") as string;
 
   const searchParams = new URLSearchParams({
     ...(search && { search: search.trim() }),
     ...(localGroup && { localGroup: localGroup.trim() }),
-    ...(hideLocalGroupSelector && {
+    ...(hideLocalGroupSelector === "true" && {
       hideLocalGroupSelector,
     }),
+    ...(category && { category: category.trim() }),
   });
 
   redirect(`?${searchParams.toString()}`);
@@ -35,7 +37,7 @@ export async function EventsNav({
   defaultValues,
   hideLocalGroupSelector,
 }: {
-  defaultValues: { search: string; localGroup: string };
+  defaultValues: { search: string; localGroup: string; category: string };
   hideLocalGroupSelector: boolean;
 }) {
   const options = [
@@ -100,6 +102,7 @@ export async function EventsNav({
         name="hideLocalGroupSelector"
         value={hideLocalGroupSelector ? "true" : "false"}
       />
+      <input type="hidden" name="category" value={defaultValues.category} />
       <FormSubmitButton>Events filtern</FormSubmitButton>
     </form>
   );
