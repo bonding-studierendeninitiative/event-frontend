@@ -16,7 +16,7 @@ export default function Home({
   const filterValues = { search, localGroup, category };
 
   return (
-    <>
+    <div className="w-full flex flex-col items-center gap-8 py-8">
       {showNavigation && (
         <EventsNav
           hideLocalGroupSelector={hideLocalGroupSelector}
@@ -24,6 +24,6 @@ export default function Home({
         />
       )}
       <Events filterValues={filterValues} />
-    </>
+    </div>
   );
 }
