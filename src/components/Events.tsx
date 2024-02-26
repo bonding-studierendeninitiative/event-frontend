@@ -6,7 +6,12 @@ import { _bondingEvent } from "./Event";
 export async function Events({
   filterValues,
 }: {
-  filterValues: { search: string; localGroup: string; category?: string };
+  filterValues: {
+    search: string;
+    localGroup: string;
+    category?: string;
+    count: number;
+  };
 }) {
   const localGroup = filterValues.localGroup;
   const search = filterValues.search;
@@ -46,7 +51,8 @@ export async function Events({
             .toLowerCase()
             .includes(search.toLowerCase());
         }
-      }) || [];
+      })
+      .slice(0, filterValues.count > 0 ? filterValues.count : undefined) || [];
 
   if (filteredEvents.length == 0) {
     return <NoEvents />;

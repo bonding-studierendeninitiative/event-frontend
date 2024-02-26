@@ -12,7 +12,8 @@ export default async function EventsPage({
   const search = (searchParams?.search as string) || "";
   const localGroup = (searchParams?.localGroup as string) || "alle";
   const category = (searchParams?.category as string) || "alle";
-  const filterValues = { search, localGroup, category };
+  const count = parseInt((searchParams?.count as string) || "0");
+  const filterValues = { search, localGroup, category, count };
 
   return (
     <>

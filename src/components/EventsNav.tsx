@@ -38,7 +38,12 @@ export async function EventsNav({
   defaultValues,
   hideLocalGroupSelector,
 }: {
-  defaultValues: { search: string; localGroup: string; category: string };
+  defaultValues: {
+    search: string;
+    localGroup: string;
+    category: string;
+    count: number;
+  };
   hideLocalGroupSelector: boolean;
 }) {
   const options = [
@@ -93,7 +98,7 @@ export async function EventsNav({
               );
             })}
           </SelectContent>
-          <SelectTrigger className="flex gap-2 min-w-40 justify-between items-center px-5 py-3 rounded-lg bg-blue text-white">
+          <SelectTrigger className="flex gap-2 min-w-40 justify-between items-center px-5 py-3 rounded-lg border-blue border-2 border-solid  bg-white text-neutral">
             <SelectValue placeholder="Wähle einen Standort aus" />
           </SelectTrigger>
         </Select>
@@ -104,6 +109,7 @@ export async function EventsNav({
         value={hideLocalGroupSelector ? "true" : "false"}
       />
       <input type="hidden" name="category" value={defaultValues.category} />
+      <input type="hidden" name="count" value={defaultValues.count} />
       <FormSubmitButton className="group-data-[touched=true]/form:animate-pulse">
         Events filtern
       </FormSubmitButton>
