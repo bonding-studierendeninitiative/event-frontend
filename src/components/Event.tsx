@@ -20,7 +20,7 @@ export function _bondingEvent({ event }: { event: Event }) {
         description={strip(event.description)}
       />
       <a
-        href={`https://www2.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=${event.id}`}
+        href={`https://www1.bonding.de/veranstaltungen.nsf/anmeldungstud?OpenForm&id=${event.id}`}
         className="text-white bg-blue text-center rounded-full px-4 py-2 no-underline"
         target="_blank"
       >
